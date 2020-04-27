@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyman.mapper.StationMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.skyman.entity.InfoStation">
+		<id column="S_ID" property="sId" />
+		<result column="S_NAME" property="sName" />
+		<result column="S_PROVINCE" property="sProvince" />
+
+	</resultMap>
+	<!--查询app列表-->
+
+
+	<select id="selectAllStation" parameterType="java.util.Map" resultType="com.skyman.entity.InfoStation">
+		SELECT
+			S_ID AS "sid",
+			S_NAME AS "sname",
+			S_PROVINCE AS "sprovince"
+		FROM
+			info_station
+	</select>
+
+	<select id="getStationBySname" parameterType="java.lang.String" resultType="com.skyman.entity.InfoStation">
+		SELECT
+			S_ID AS "sid",
+			S_NAME AS "sName",
+			S_PROVINCE AS "sProvince"
+		FROM
+			info_station t
+		where
+			t.S_NAME = #{sName}
+	</select>
+
+	<select id="getUserById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoLogin">
+		SELECT
+			ID AS "id",
+			PASSWORD AS "password",
+			USERNAME AS "username",
+			ROLE AS "role",
+			ADDRESS AS "address",
+			PHONE AS "phone",
+			EMAIL AS "email"
+		FROM
+			info_login t
+		where
+			t.ID = #{id}
+	</select>
+
+	<update id="userUpdate" parameterType="java.util.Map">
+		update info_login t
+		set
+			<if test="username != null">
+				t.USERNAME = #{username},
+			</if>
+			<if test="phone != null">
+				t.PHONE = #{phone},
+			</if>
+			<if test="email != null">
+				t.EMAIL = #{email},
+			</if>
+			<if test="address != null">
+				t.ADDRESS = #{address}
+			</if>
+		WHERE
+			t.ID = #{id}
+	</update>
+
+</mapper>

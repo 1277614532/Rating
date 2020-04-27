@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyman.mapper.ProgramMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.skyman.entity.InfoProgram">
+		<id column="P_ID" property="pId" />
+		<result column="P_NAME" property="pName" />
+		<result column="P_STATION" property="pStation" />
+		<result column="P_TIME" property="pTime" />
+		<result column="P_DESC" property="pDesc" />
+		<result column="P_RATING" property="pRating" />
+
+	</resultMap>
+	<!--查询app列表-->
+
+
+	<select id="getAllProgram" parameterType="java.util.Map" resultType="com.skyman.entity.InfoProgram">
+		SELECT
+			P_ID AS "pid",
+			P_NAME AS "pname",
+			P_STATION AS "pstation",
+			P_TIME AS "ptime",
+			P_DESC AS "pdesc",
+			P_RATING AS "prating"
+		FROM
+			info_program
+	</select>
+
+	<select id="getProByName" parameterType="java.lang.String" resultType="com.skyman.entity.InfoProgram">
+		SELECT
+			P_ID AS "pid",
+			P_NAME AS "pname",
+			P_STATION AS "pstation",
+			P_TIME AS "ptime",
+			P_DESC AS "pdesc",
+			P_RATING AS "prating"
+		FROM
+			info_program t
+		WHERE
+		    t.P_NAME = #{pname}
+	</select>
+
+	<select id="getUserByUsername" parameterType="java.lang.String" resultType="com.skyman.entity.InfoLogin">
+		SELECT
+			ID AS "id",
+			PASSWORD AS "password",
+			USERNAME AS "username",
+			ROLE AS "role",
+			ADDRESS AS "address",
+			PHONE AS "phone",
+			EMAIL AS "email"
+		FROM
+			info_login t
+		where
+			t.USERNAME = #{username}
+	</select>
+
+	<select id="getUserById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoLogin">
+		SELECT
+			ID AS "id",
+			PASSWORD AS "password",
+			USERNAME AS "username",
+			ROLE AS "role",
+			ADDRESS AS "address",
+			PHONE AS "phone",
+			EMAIL AS "email"
+		FROM
+			info_login t
+		where
+			t.ID = #{id}
+	</select>
+
+	<update id="userUpdate" parameterType="java.util.Map">
+		update info_login t
+		set
+			<if test="username != null">
+				t.USERNAME = #{username},
+			</if>
+			<if test="phone != null">
+				t.PHONE = #{phone},
+			</if>
+			<if test="email != null">
+				t.EMAIL = #{email},
+			</if>
+			<if test="address != null">
+				t.ADDRESS = #{address}
+			</if>
+		WHERE
+			t.ID = #{id}
+	</update>
+
+</mapper>

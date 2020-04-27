@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyman.mapper.InfoLoginMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.skyman.entity.InfoLogin">
+		<id column="ID" property="id" />
+		<result column="USERNAME" property="username" />
+		<result column="PASSWORD" property="password" />
+		<result column="ROLE" property="role" />
+	</resultMap>
+	<!--查询app列表-->
+	<select id="selectInfos" parameterType="java.lang.String" resultType="com.skyman.entity.InfoLogin">
+		SELECT
+			ID,
+			PASSWORD,
+			USERNAME,
+			ROLE
+		FROM
+			info_login
+		WHERE
+			USERNAME = #{username}
+	</select>
+
+	<select id="selectAllUser" parameterType="java.util.Map" resultType="com.skyman.entity.InfoLogin">
+		SELECT
+			ID,
+			PASSWORD,
+			USERNAME,
+			ROLE,
+			ADDRESS,
+			PHONE,
+			EMAIL
+		FROM
+			info_login
+	</select>
+
+</mapper>

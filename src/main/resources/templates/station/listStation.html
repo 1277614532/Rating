@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>卫视列表</title>
+        <header th:replace="header::html"></header>
+    </head>
+    <body>
+        <div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="username"  placeholder="请输入卫视名称" autocomplete="on" class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button class="layui-btn"  lay-submit="fuzzySearch" lay-filter="fuzzySearch"><i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-card-header">
+                            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加卫视','/StationController/stationAdd',600,400)"><i class="layui-icon"></i>添加</button>
+                        </div>
+                        <div class="layui-card-body ">
+                            <table id="StationInfo" lay-filter="test"></table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#StationInfo'
+                ,height: 399
+                ,url: '/StationController/selectAllStation' //数据接口
+                ,page: true //开启分页
+                ,cols: [
+                    [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'sid', title: 'ID', width:80, sort: true}
+                    ,{field: 'sname', title: '卫视名'}
+                    ,{field: 'sprovince', title: '省份'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
+                ]
+                ]
+            });
+
+            //监听工具条
+            table.on('tool(test)',function (obj) {
+                var data = obj.data;
+                if (obj.event === 'del'){
+                    layer.confirm('确定删除吗？',function () {
+                        $.ajax({
+                            url:"/user/delete",
+                            type:"GET",
+                            data:{username:data.username},
+                            dataType:'json',
+                            success:function (result) {
+                                layer.alert('删除成功',{icon:1},function (index1) {
+                                    layer.close(index1);
+                                    xadmin.father_reload();
+                                })
+                            }
+                        });
+                    });
+                }else if(obj.event === 'edit'){
+                    xadmin.open('编辑卫视信息','/UserController/userEdit/?id='+data.id);
+                }
+
+            });
+
+        });
+    </script>
+
+
+
+</html>

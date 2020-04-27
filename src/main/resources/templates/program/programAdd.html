@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加节目</title>
+    <header th:replace="header::html"></header>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label for="pName" class="layui-form-label">
+                    <span class="x-red"></span>节目名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="pName" th:value="${infoProgram.getPName()}" name="pName" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>唯一节目名
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="pStation" class="layui-form-label">
+                    <span class="x-red"></span>电视台
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="pStation" th:value="${infoProgram.getPStation()}" name="pStation" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="pTime" class="layui-form-label">
+                    <span class="x-red"></span>播出时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="time" id="pTime" th:value="${infoProgram.getPTime()}" name="pTime" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="pDesc" class="layui-form-label">
+                    <span class="x-red"></span>节目描述
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="pDesc" th:value="${infoProgram.getPDesc()}" name="pDesc" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <button class="layui-btn" lay-filter="add" lay-submit="">
+                    增加
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>layui.use(['form', 'layer'],
+    function () {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer;
+
+        //监听提交
+        form.on('submit(add)',
+            function (data) {
+                $.ajax({
+                    url: "/ProgramController/programSave",
+                    type: "POST",
+                    data: data.field,
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.code == 500 || result.code == 5000103) {
+                            layer.alert(result.msg);
+                        } else {
+                            console.log(data);
+                            //发异步
+                            layer.alert("增加成功", {
+                                    icon: 6
+                                },
+                                function () {
+                                    //关闭当前frame
+                                    xadmin.close();
+
+                                    // 可以对父窗口进行刷新
+                                    xadmin.father_reload();
+
+                                });
+                        }
+                    }
+
+                })
+                return false;
+            });
+    });</script>
+</body>
+
+</html>
