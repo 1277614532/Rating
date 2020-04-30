@@ -21,4 +21,6 @@ public interface UserService extends IService<InfoLogin> {
     InfoLogin getUserById(int id);
 
     List<InfoLogin> getUserByLike(String str);
+
+    void userDelete(UserDto userDto);
 }

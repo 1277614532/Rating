@@ -12,4 +12,12 @@ public interface ProgramService extends IService<InfoProgram> {
     List<InfoProgram> getProgramBySname(String pName);
 
     void programSave(ProgramDto programDto);
+
+    void programDelete(ProgramDto programDto);
+
+    InfoProgram getProgramById(int pId);
+
+    void programUpdate(ProgramDto programDto);
+
+    void programDeleteByStation(String string);
 }

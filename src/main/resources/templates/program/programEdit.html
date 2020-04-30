@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>编辑用户</title>
+    <title>编辑电视节目</title>
     <header th:replace="header::html"></header>
 </head>
 <body>
@@ -12,44 +12,44 @@
         <form class="layui-form">
             <div class="layui-form-item" hidden="hidden">
                 <div class="layui-input-inline">
-                    <input type="text" id="id" th:value="${infoLogin.getId()}" name="id" required=""
+                    <input type="text" id="pid" th:value="${infoProgram.getPId()}" name="pid" required=""
                            lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red"></span>登录名
+                <label for="pName" class="layui-form-label">
+                    <span class="x-red"></span>节目名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" th:value="${infoLogin.getUsername()}" name="username" required=""
+                    <input type="text" id="pName" th:value="${infoProgram.getPName()}" name="pName" required=""
                            lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的登入名
+                    <span class="x-red">*</span>将会成为节目唯一的名称
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="phone" class="layui-form-label">
-                    <span class="x-red"></span>手机
+                <label for="pStation" class="layui-form-label">
+                    <span class="x-red"></span>播出卫视
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="phone" th:value="${infoLogin.getPhone()}" name="phone" required=""
-                           lay-verify="phone"
+                    <input type="text" id="pStation" th:value="${infoProgram.getPStation()}" name="pStation" required=""
+                           lay-verify="required"
                            autocomplete="on" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的手机号
+                    <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_email" class="layui-form-label">
-                    <span class="x-red"></span>邮箱
+                <label for="pTime" class="layui-form-label">
+                    <span class="x-red"></span>播出时间
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_email" th:value="${infoLogin.getEmail()}" name="email" required=""
-                           lay-verify="email"
+                    <input type="time" id="pTime" th:value="${infoProgram.getPTime()}" name="pTime" required=""
+                           lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -57,17 +57,16 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_address" class="layui-form-label">
-                    <span class="x-red"></span>地址
+                <label for="pDesc" class="layui-form-label">
+                    <span class="x-red"></span>节目描述
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_address" th:value="${infoLogin.getAddress()}" name="address" required=""
-                           lay-verify="address"
+                    <input type="text" id="pDesc" th:value="${infoProgram.getPDesc()}" name="pDesc" required=""
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_address" class="layui-form-label">
+                <label for="pDesc" class="layui-form-label">
                 </label>
                 <button class="layui-btn" lay-filter="update" lay-submit="">
                     确认
@@ -82,21 +81,11 @@
         var form = layui.form,
             layer = layui.layer;
 
-        /*//自定义验证规则
-        form.verify({
-            username: function (value) {
-                if (value.length < 5) {
-                    return '昵称至少得5个字符啊';
-                }
-            }
-
-        });*/
-
         //监听提交
         form.on('submit(update)',
             function (data) {
                 $.ajax({
-                    url: "/UserController/userUpdate?id="+$("#id").val(),
+                    url: "/ProgramController/programUpdate?pId="+$("#pid").val(),
                     type: "PUT",
                     data: data.field,
                     dataType: 'json',

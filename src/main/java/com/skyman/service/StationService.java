@@ -12,4 +12,10 @@ public interface StationService extends IService<InfoStation> {
     List<InfoStation> getStationBySname(String sName);
 
     void stationSave(StationDto stationDto);
+
+    InfoStation getStationById(int sId);
+
+    void stationUpdate(StationDto stationDto);
+
+    void stationDelete(StationDto stationDto);
 }

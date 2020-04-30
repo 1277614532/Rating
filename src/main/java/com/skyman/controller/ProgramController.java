@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +52,35 @@ public class ProgramController {
             return ResultUtil.success();
         }
 
+    }
+
+    @GetMapping(value = "programEdit")
+    public String programEdit(Model model, InfoProgram infoProgram){
+        InfoProgram programById = programService.getProgramById(infoProgram.getPId());
+        if(programById != null){
+            model.addAttribute(programById);
+        }
+        return "program/programEdit";
+    }
+
+    @PutMapping(value = "programUpdate")
+    @ResponseBody
+    public ResultEntity programUpdate(ProgramDto programDto){
+        List<InfoProgram> programBySname = programService.getProgramBySname(programDto.getPName());
+        //判断是否存在重复的用户名和电话
+        if(programBySname != null && programBySname.size() != 0 && !(programBySname.get(0).getPName().equals(programDto.getPName()))){
+            return ResultUtil.error(ExceptionEnum.PNAME_REPEAT.getCode(),ExceptionEnum.PNAME_REPEAT.getMsg());
+        }else{
+            programService.programUpdate(programDto);
+            return ResultUtil.success();
+        }
+
+    }
+
+    @PostMapping(value = "programDelete")
+    @ResponseBody
+    public ResultEntity programDelete(ProgramDto programDto){
+        programService.programDelete(programDto);
+        return ResultUtil.success();
     }
 }

@@ -36,6 +36,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, InfoLogin> implemen
     }
 
     @Override
+    public void userDelete(UserDto userDto) {
+        baseMapper.deleteById(userDto.getId());
+    }
+
+    @Override
     public List<InfoLogin> getUserByPhone(String phone) {
         List<InfoLogin> userByPhone = userMapper.getUserByPhone(phone);
         return userByPhone;
@@ -61,6 +66,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, InfoLogin> implemen
         map.put("phone",userDto.getPhone());
         map.put("email",userDto.getEmail());
         map.put("address",userDto.getAddress());
+        map.put("id",userDto.getId());
         baseMapper.userUpdate(map);
     }
 

@@ -41,53 +41,43 @@
 		    t.P_NAME = #{pname}
 	</select>
 
-	<select id="getUserByUsername" parameterType="java.lang.String" resultType="com.skyman.entity.InfoLogin">
+
+	<select id="getProgramById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoProgram">
 		SELECT
-			ID AS "id",
-			PASSWORD AS "password",
-			USERNAME AS "username",
-			ROLE AS "role",
-			ADDRESS AS "address",
-			PHONE AS "phone",
-			EMAIL AS "email"
+			P_ID AS "pid",
+			P_NAME AS "pname",
+			P_STATION AS "pstation",
+			P_TIME AS "ptime",
+			P_DESC AS "pdesc",
+			P_RATING AS "prating"
 		FROM
-			info_login t
-		where
-			t.USERNAME = #{username}
+			info_program t
+		WHERE
+		    t.P_ID = #{pId}
 	</select>
 
-	<select id="getUserById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoLogin">
-		SELECT
-			ID AS "id",
-			PASSWORD AS "password",
-			USERNAME AS "username",
-			ROLE AS "role",
-			ADDRESS AS "address",
-			PHONE AS "phone",
-			EMAIL AS "email"
-		FROM
-			info_login t
-		where
-			t.ID = #{id}
-	</select>
-
-	<update id="userUpdate" parameterType="java.util.Map">
-		update info_login t
+	<update id="programUpdate" parameterType="java.util.Map">
+		update info_program t
 		set
-			<if test="username != null">
-				t.USERNAME = #{username},
+			<if test="pname != null">
+				t.P_NAME = #{pname},
 			</if>
-			<if test="phone != null">
-				t.PHONE = #{phone},
+			<if test="pstation != null">
+				t.P_STATION = #{pstation},
 			</if>
-			<if test="email != null">
-				t.EMAIL = #{email},
+			<if test="ptime != null">
+				t.P_TIME = #{ptime},
 			</if>
-			<if test="address != null">
-				t.ADDRESS = #{address}
+			<if test="pdesc != null">
+				t.P_DESC = #{pdesc}
 			</if>
 		WHERE
-			t.ID = #{id}
+			t.P_ID = #{pid}
 	</update>
+
+	<delete id="deleteByStation" parameterType="java.lang.String">
+		DELETE FROM info_program
+		WHERE P_STATION = #{string}
+	</delete>
 
 </mapper>

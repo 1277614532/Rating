@@ -32,38 +32,28 @@
 			t.S_NAME = #{sName}
 	</select>
 
-	<select id="getUserById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoLogin">
+	<select id="getStationById" parameterType="java.lang.Integer" resultType="com.skyman.entity.InfoStation">
 		SELECT
-			ID AS "id",
-			PASSWORD AS "password",
-			USERNAME AS "username",
-			ROLE AS "role",
-			ADDRESS AS "address",
-			PHONE AS "phone",
-			EMAIL AS "email"
+			S_ID AS "sid",
+			S_NAME AS "sName",
+			S_PROVINCE AS "sProvince"
 		FROM
-			info_login t
+			info_station t
 		where
-			t.ID = #{id}
+			t.S_ID = #{sid}
 	</select>
 
-	<update id="userUpdate" parameterType="java.util.Map">
-		update info_login t
+	<update id="stationUpdate" parameterType="java.util.Map">
+		update info_station t
 		set
-			<if test="username != null">
-				t.USERNAME = #{username},
-			</if>
-			<if test="phone != null">
-				t.PHONE = #{phone},
-			</if>
-			<if test="email != null">
-				t.EMAIL = #{email},
-			</if>
-			<if test="address != null">
-				t.ADDRESS = #{address}
-			</if>
+		<if test="sname != null">
+			t.S_NAME = #{sname},
+		</if>
+		<if test="sprovince != null">
+			t.S_PROVINCE = #{sprovince}
+		</if>
 		WHERE
-			t.ID = #{id}
+		t.S_ID = #{sid}
 	</update>
 
 </mapper>

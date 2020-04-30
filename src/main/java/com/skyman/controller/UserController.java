@@ -7,7 +7,6 @@ import com.skyman.dto.UserDto;
 import com.skyman.entity.InfoLogin;
 import com.skyman.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +75,7 @@ public class UserController {
 
     @PutMapping(value = "userUpdate")
     @ResponseBody
-    public ResultEntity userUpdate(HttpServletRequest request, UserDto userDto){
+    public ResultEntity userUpdate(UserDto userDto){
 //        userDto.setPassword(MD5.crypt(userDto.getPassword()));
 //        userDto.setRole("普通用户");
         List<InfoLogin> byPhone = userService.getUserByPhone(userDto.getPhone());
@@ -87,13 +86,16 @@ public class UserController {
         }else if(byUsername != null && byUsername.size() != 0 && !(byUsername.get(0).getUsername().equals(userDto.getUsername()))){
             return ResultUtil.error(ExceptionEnum.USERNAME_REPEAT.getCode(),ExceptionEnum.USERNAME_REPEAT.getMsg());
         }else{
-            String str = request.getParameter("id");
-            int id = Integer.valueOf(str);
-            userDto.setId(id);
             userService.userUpdate(userDto);
-
             return ResultUtil.success();
         }
 
+    }
+
+    @PostMapping(value = "userDelete")
+    @ResponseBody
+    public ResultEntity userDelete(UserDto userDto){
+            userService.userDelete(userDto);
+            return ResultUtil.success();
     }
 }

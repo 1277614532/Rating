@@ -10,57 +10,41 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
+            <div class="layui-form-item" hidden="hidden">
+                <div class="layui-input-inline">
+                    <input type="text" id="sid" th:value="${infoStation.getSId()}" name="sid" required=""
+                           lay-verify="sid"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>登录名
+                <label for="sName" class="layui-form-label">
+                    <span class="x-red"></span>卫视名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" th:value="${infoLogin.getUsername()}" name="username" required=""
+                    <input type="text" id="sName" th:value="${infoStation.getSName()}" name="sName" required=""
                            lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的登入名
+                    <span class="x-red">*</span>将会成为卫视唯一的名称
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="phone" class="layui-form-label">
-                    <span class="x-red">*</span>手机
+                <label for="sProvince" class="layui-form-label">
+                    <span class="x-red"></span>省份
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="phone" th:value="${infoLogin.getPhone()}" name="phone" required=""
-                           lay-verify="phone"
+                    <input type="text" id="sProvince" th:value="${infoStation.getSProvince()}" name="sProvince" required=""
+                           lay-verify="required"
                            autocomplete="on" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>将会成为您唯一的手机号
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_email" class="layui-form-label">
-                    <span class="x-red">*</span>邮箱
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="L_email" th:value="${infoLogin.getEmail()}" name="email" required=""
-                           lay-verify="email"
-                           autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_address" class="layui-form-label">
-                    <span class="x-red">*</span>地址
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="L_address" th:value="${infoLogin.getAddress()}" name="address" required=""
-                           lay-verify="address"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_address" class="layui-form-label">
+                <label for="sProvince" class="layui-form-label">
                 </label>
                 <button class="layui-btn" lay-filter="update" lay-submit="">
                     确认
@@ -88,9 +72,8 @@
         //监听提交
         form.on('submit(update)',
             function (data) {
-                var datas = data.data;
                 $.ajax({
-                    url: "/UserController/userUpdate?id"+datas.id,
+                    url: "/StationController/stationUpdate?sId="+$("#sid").val(),
                     type: "PUT",
                     data: data.field,
                     dataType: 'json',

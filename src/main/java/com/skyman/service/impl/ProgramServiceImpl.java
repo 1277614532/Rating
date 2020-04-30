@@ -7,7 +7,9 @@ import com.skyman.mapper.ProgramMapper;
 import com.skyman.service.ProgramService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProgramServiceImpl extends ServiceImpl<ProgramMapper, InfoProgram> implements ProgramService {
@@ -26,5 +28,32 @@ public class ProgramServiceImpl extends ServiceImpl<ProgramMapper, InfoProgram> 
     @Override
     public void programSave(ProgramDto programDto) {
         baseMapper.insert(programDto);
+    }
+
+    @Override
+    public void programDelete(ProgramDto programDto) {
+        baseMapper.deleteById(programDto.getPId());
+    }
+
+    @Override
+    public InfoProgram getProgramById(int pId) {
+        InfoProgram programById = baseMapper.getProgramById(pId);
+        return programById;
+    }
+
+    @Override
+    public void programUpdate(ProgramDto programDto) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("pid",programDto.getPId());
+        map.put("pname",programDto.getPName());
+        map.put("pstation",programDto.getPStation());
+        map.put("ptime",programDto.getPTime());
+        map.put("pdesc",programDto.getPDesc());
+        baseMapper.programUpdate(map);
+    }
+
+    @Override
+    public void programDeleteByStation(String string) {
+        baseMapper.deleteByStation(string);
     }
 }

@@ -78,11 +78,11 @@
                 if (obj.event === 'del'){
                     layer.confirm('确定删除吗？',function () {
                         $.ajax({
-                            url:"/user/delete",
-                            type:"GET",
-                            data:{username:data.username},
+                            url:"/UserController/userDelete?id="+data.id,
+                            type:"POST",
+                            data:data.field,
                             dataType:'json',
-                            success:function (result) {
+                            success:function () {
                                 layer.alert('删除成功',{icon:1},function (index1) {
                                     layer.close(index1);
                                     xadmin.father_reload();
