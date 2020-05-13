@@ -48,7 +48,7 @@
                     <span class="x-red"></span>播出时间
                 </label>
                 <div class="layui-input-inline">
-                    <input type="time" id="pTime" th:value="${infoProgram.getPTime()}" name="pTime" required=""
+                    <input type="datetime-local" id="pTime" th:value="${infoProgram.getPTime()}" name="pTime" required=""
                            lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>

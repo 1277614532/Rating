@@ -9,6 +9,7 @@
 		<result column="P_STATION" property="pStation" />
 		<result column="P_TIME" property="pTime" />
 		<result column="P_DESC" property="pDesc" />
+		<result column="P_CLICKS" property="pClicks" />
 		<result column="P_RATING" property="pRating" />
 
 	</resultMap>
@@ -22,6 +23,7 @@
 			P_STATION AS "pstation",
 			P_TIME AS "ptime",
 			P_DESC AS "pdesc",
+			P_CLICKS AS "pclicks",
 			P_RATING AS "prating"
 		FROM
 			info_program
@@ -34,6 +36,7 @@
 			P_STATION AS "pstation",
 			P_TIME AS "ptime",
 			P_DESC AS "pdesc",
+			P_CLICKS AS "pclicks",
 			P_RATING AS "prating"
 		FROM
 			info_program t
@@ -49,6 +52,7 @@
 			P_STATION AS "pstation",
 			P_TIME AS "ptime",
 			P_DESC AS "pdesc",
+			P_CLICKS AS "pclicks",
 			P_RATING AS "prating"
 		FROM
 			info_program t

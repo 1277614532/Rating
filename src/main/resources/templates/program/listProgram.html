@@ -54,7 +54,7 @@
             //第一个实例
             table.render({
                 elem: '#LoginProgram'
-                ,height: 312
+                ,height: 459
                 ,url: '/ProgramController/selectAllProgram' //数据接口
                 ,page: true //开启分页
                 ,cols: [
@@ -63,8 +63,9 @@
                     ,{field: 'pid', title: 'ID', width:80, sort: true}
                     ,{field: 'pname', title: '节目名'}
                     ,{field: 'pstation', title: '电视台'}
-                    ,{field: 'ptime', title: '播出时间'}
+                    ,{field: 'ptime', title: '播出时间', width:180}
                     ,{field: 'pdesc', title: '节目描述'}
+                    ,{field: 'pclicks', title: '点击次数'}
                     ,{field: 'prating', title: '收视率', sort:true}
                     ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
                 ]

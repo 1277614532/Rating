@@ -24,6 +24,8 @@ public class InfoProgram extends Model<InfoProgram> {
     private String pTime;
     @TableField("P_DESC")
     private String pDesc;
+    @TableField("P_CLICKS")
+    private String pClicks;
     @TableField("P_RATING")
     private String pRating;
 

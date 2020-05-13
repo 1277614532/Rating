@@ -19,6 +19,7 @@ spring:
     suffix: .html
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+    #jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8
     username: root
     password: root
@@ -57,7 +58,7 @@ mybatis-plus:
     logic-not-delete-value: 1
   configuration:
     #驼峰方式
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: false
     cache-enabled: false
     call-setters-on-nulls: true
   mapper-locations: classpath:/mapper/*Mapper.xml

@@ -22,6 +22,7 @@
 			ID AS "id",
 			PASSWORD AS "password",
 			USERNAME AS "username",
+			SEX AS "sex",
 			ROLE AS "role",
 			ADDRESS AS "address",
 			PHONE AS "phone",

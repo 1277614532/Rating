@@ -14,10 +14,10 @@
                 <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
             </div>
             <ul class="layui-nav left fast-add" lay-filter="">
-                <li class="layui-nav-item">
+                <!--<li class="layui-nav-item">
                     <a href="javascript:;">+新增</a>
                     <dl class="layui-nav-child">
-                        <!-- 二级菜单 -->
+                        &lt;!&ndash; 二级菜单 &ndash;&gt;
                         <dd>
                             <a onclick="xadmin.open('最大化','http://www.baidu.com','','',true)">
                                 <i class="iconfont">&#xe6a2;</i>弹出最大化</a></dd>
@@ -34,7 +34,7 @@
                             <a onclick="xadmin.add_tab('在tab打开刷新','member-del.html',true)">
                                 <i class="iconfont">&#xe6b8;</i>在tab打开刷新</a></dd>
                     </dl>
-                </li>
+                </li>-->
             </ul>
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
@@ -105,7 +105,7 @@
                     </li>-->
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe723;</i>
+                            <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
                             <cite>用户管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -113,11 +113,6 @@
                                 <a onclick="xadmin.add_tab('用户列表','/TestController/infoLogin')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>用户列表</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('订单列表1','order-list1.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>用户列表1</cite></a>
                             </li>
                         </ul>
                     </li>
@@ -149,7 +144,7 @@
                     </li>-->
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="电视节目管理">&#xe726;</i>
+                            <i class="iconfont left-nav-li" lay-tips="电视节目管理">&#xe6ce;</i>
                             <cite>电视节目管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -158,23 +153,50 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>电视节目列表</cite></a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="iconfont left-nav-li" lay-tips="电视节目管理">&#xe6b4;</i>
+                            <cite>节目统计</cite>
+                            <i class="iconfont nav_right">&#xe697;</i></a>
+                        <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('收视率分析','admin-role.html')">
+                                <a onclick="xadmin.add_tab('省份分布图','/')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>省份</cite></a>
+                            </li>
+                            <!--<li>
+                                <a onclick="xadmin.add_tab('电视节目列表','/ProgramController/infoProgram')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>类型</cite></a>
+                            </li>-->
+                            <li>
+                                <a onclick="xadmin.add_tab('时段分布统计','/table')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>时段</cite></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!--<li>
+                        <a href="javascript:;">
+                            <i class="iconfont left-nav-li" lay-tips="电视节目管理">&#xe726;</i>
+                            <cite>收视率管理</cite>
+                            <i class="iconfont nav_right">&#xe697;</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a onclick="xadmin.add_tab('电视节目列表','/ProgramController/infoProgram')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>收视率分析</cite></a>
                             </li>
-                            <!--<li>-->
-                                <!--<a onclick="xadmin.add_tab('权限分类','admin-cate.html')">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>权限分类</cite></a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a onclick="xadmin.add_tab('权限管理','admin-rule.html')">-->
-                                    <!--<i class="iconfont">&#xe6a7;</i>-->
-                                    <!--<cite>权限管理</cite></a>-->
-                            <!--</li>-->
+                            <li>
+                                <a onclick="xadmin.add_tab('收视率分析','admin-role.html')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>收视率预测</cite></a>
+                            </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <!--<li>-->
                         <!--<a href="javascript:;">-->
                             <!--<i class="iconfont left-nav-li" lay-tips="系统统计">&#xe6ce;</i>-->
@@ -223,7 +245,7 @@
                             <!--</li>-->
                         <!--</ul>-->
                     <!--</li>-->
-                    <li>
+                    <!--<li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="图标字体">&#xe6b4;</i>
                             <cite>权限管理</cite>
@@ -235,8 +257,8 @@
                                     <cite>图标对应字体</cite></a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
+                    </li>-->
+                    <!--<li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="其它页面">&#xe6b4;</i>
                             <cite>其它页面</cite>
@@ -263,8 +285,8 @@
                                     <cite>更新日志</cite></a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
+                    </li>-->
+                    <!--<li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
                             <cite>layui第三方组件</cite>
@@ -306,7 +328,7 @@
                                     <cite>notice 通知控件</cite></a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
