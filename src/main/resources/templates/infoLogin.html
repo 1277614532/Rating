@@ -20,18 +20,17 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-body ">
+                        <!--<div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" id="username" name="username"  placeholder="请输入用户名或手机号" autocomplete="on" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="fuzzySearch"><i class="layui-icon">&#xe615;</i></button>
+                                    <button class="layui-btn" id="fuzzySearch" lay-submit="" lay-filter="fuzzySearch"><i class="layui-icon">&#xe615;</i></button>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                         <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','/UserController/userAdd',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body ">
@@ -48,19 +47,18 @@
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
     <script>
-        layui.use('table', function(){
+        layui.use(['form', 'table'], function(){
             var table = layui.table;
+            var form = layui.form;
 
             //第一个实例
             table.render({
                 elem: '#LoginInfo'
                 ,height: 399
                 ,url: '/UserController/selectAllUser' //数据接口
-                ,page: true //开启分页
                 ,cols: [
                     [ //表头
-                    {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'id', title: 'ID', width:80, sort: true}
+                    {field: 'id', title: 'ID', width:80, sort: true}
                     ,{field: 'username', title: '用户名'}
                     ,{field: 'sex', title: '性别'}
                     ,{field: 'phone', title: '电话'}
@@ -71,6 +69,14 @@
                 ]
                 ]
             });
+            //用于触发搜索搜索按钮的点击事件
+            $("#fuzzySearch").on("click",function () {
+                table.reload('LoginInfo',{
+                    where:{ //查询条件，传值到后台
+                        content:$("#username").val(),
+                    }
+                })
+            })
 
             //监听工具条
             table.on('tool(test)',function (obj) {
@@ -96,29 +102,44 @@
 
             });
 
+
         });
     </script>
-    <script>
-        layui.use('form',function () {
+    <!--<script>
+        layui.use(['form', 'table'],function () {
             var form = layui.form;
+            var table = layui.table;
 
             //批量查询
-            form.on('submit(fuzzySearch)',function () {
-                $.ajax({
-                    url: "/UserController/fuzzySearch",
-                    type: "GET",
-                    data: data.field,
-                    dataType: 'json',
-                    success: function () {
-                        console.log(data);
-                        //刷新当前frame
-                        //xadmin.reload();
+            table.render({
+                elem: '#LoginInfo'
+                ,height: 312
+                ,url: '/UserController/fuzzySearch' //数据接口
+                ,page: true //开启分页
+                ,cols: [
+                    [ //表头
+                        {field: 'id', title: 'ID', width:80, sort: true}
+                        ,{field: 'username', title: '用户名'}
+                        ,{field: 'sex', title: '性别'}
+                        ,{field: 'phone', title: '电话'}
+                        ,{field: 'email', title: '邮箱'}
+                        ,{field: 'address', title: '住址'}
+                        ,{field: 'role', title: '角色'}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
+                    ]
+                ]
+            });
+            //用于触发搜索搜索按钮的点击事件
+            $("#fuzzySearch").on("click",function () {
+                table.reload('LoginInfo',{
+                    where:{ //查询条件，传值到后台
+                        content:$("#username").val(),
                     }
                 })
-                return false;
-            });
+            })
         });
-    </script>
+
+    </script>-->
 
 
 

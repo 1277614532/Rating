@@ -73,7 +73,7 @@ $.ajax({
                                else{
                                    for(var i=0;i<resu.length;i++){
                                        var info=resu[i];
-                                       var sation=info.p_sration.split('-');
+                                       var sation=info.p_station.split('-');
                                        data.push([i,info.p_name,sation[1] ,info.p_desc,parseFloat(Number(info.rating).toFixed(2))]);
                                    }
                                    Table().init({

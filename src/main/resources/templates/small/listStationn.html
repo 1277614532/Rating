@@ -20,8 +20,8 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
+
                         <div class="layui-card-header">
-                            <button class="layui-btn" onclick="xadmin.open('添加卫视','/StationController/stationAdd',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body ">
                             <table id="StationInfo" lay-filter="test"></table>
@@ -50,12 +50,11 @@
                     {field: 'sid', title: 'ID', width:80, sort: true}
                     ,{field: 'sname', title: '卫视名'}
                     ,{field: 'sprovince', title: '省份'}
-                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
                 ]
                 ]
             });
 
-            //监听工具条
+            /*//监听工具条
             table.on('tool(test)',function (obj) {
                 var data = obj.data;
                 if (obj.event === 'del'){
@@ -77,7 +76,7 @@
                     xadmin.open('编辑卫视信息','/StationController/stationEdit/?sId='+data.sid);
                 }
 
-            });
+            });*/
 
         });
     </script>

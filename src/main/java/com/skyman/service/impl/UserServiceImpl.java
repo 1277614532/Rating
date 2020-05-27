@@ -20,6 +20,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, InfoLogin> implemen
 
     @Override
     public void userSave(UserDto userDto) {
+        userDto.setRole("普通用户");
         baseMapper.insert(userDto);
     }
 

@@ -33,7 +33,7 @@
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>
+                    <span class="x-red">*</span>eg：山西-山西卫视
                 </div>
             </div>
             <div class="layui-form-item">
@@ -60,6 +60,16 @@
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="pClicks" class="layui-form-label">
+                    <span class="x-red"></span>点播次数
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="pClicks" th:value="${infoProgram.getPClicks()}" name="pClicks" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
                 </div>
             </div>
 

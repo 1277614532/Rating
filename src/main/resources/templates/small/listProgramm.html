@@ -20,19 +20,10 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <!--<div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username"  placeholder="请输入节目名称" autocomplete="on" class="layui-input">
-                                </div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="fuzzySearch"><i class="layui-icon">&#xe615;</i></button>
-                                </div>
-                            </form>
-                        </div>-->
+
                         <div class="layui-card-header">
-                            <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-                            <button class="layui-btn" onclick="xadmin.open('添加节目','/ProgramController/programAdd',600,400)"><i class="layui-icon"></i>添加</button>
+                            <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加节目','/ProgramController/programAdd',600,400)"><i class="layui-icon"></i>添加</button>-->
                         </div>
                         <div class="layui-card-body ">
                             <table id="LoginProgram" lay-filter="test"></table>
@@ -65,12 +56,11 @@
                     ,{field: 'pdesc', title: '节目描述'}
                     ,{field: 'pclicks', title: '点击次数'}
                     ,{field: 'prating', title: '收视率', sort:true}
-                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
                 ]
                 ]
             });
 
-            //监听工具条
+            /*//监听工具条
             table.on('tool(test)',function (obj) {
                 var data = obj.data;
                 if (obj.event === 'del'){
@@ -92,7 +82,7 @@
                     xadmin.open('编辑节目信息','/ProgramController/programEdit?pId='+data.pid);
                 }
 
-            });
+            });*/
 
         });
     </script>

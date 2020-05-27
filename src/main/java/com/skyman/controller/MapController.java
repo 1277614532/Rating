@@ -22,8 +22,6 @@ public class MapController {
     private DayTotalMapper service;
     @RequestMapping("/")
     public String Index(){
-
-        //return  "effectScatter-bmap";
         return  "statistics/bmap";
     }
 
@@ -33,11 +31,11 @@ public class MapController {
         HashMap<String, City>map=new HashMap<>();
         List<DayTotal> list=service.getAllDayTotal();
         Long count=service.countAllDayTotal();
-        if(count==null||count<=0)return new ArrayList<City>();
+        if(count==null||count<=0)return new ArrayList<>();
 
         list.forEach(x->{
             x.getRating(count);
-            String[] addres =x.getP_sration().split("-");
+            String[] addres =x.getP_station().split("-");
             if(map.containsKey(addres[0])){
                City city= map.get(addres[0]);
                city.setValue(x.getRating());
@@ -54,25 +52,24 @@ public class MapController {
     }
     @RequestMapping(value="/map-data",method= RequestMethod.GET,produces="application/json")
     @ResponseBody
-    public List<DayTotal> getDateTotal(@RequestParam("startCreatetime")String startCreatetime, @RequestParam("endCreatetime")String endCreatetime){
+    public List<DayTotal> getDateTotal(@RequestParam("startCreatetime")String startCreatetime,
+                                                    @RequestParam("endCreatetime")String endCreatetime){
 
         try {
             System.out.println(startCreatetime+"  "+endCreatetime);
             List<DayTotal> list=service.getDayTotal(startCreatetime,endCreatetime);
             Long count=service.countAllDayTotalByTime(startCreatetime,endCreatetime);
-            if(count==null||count<=0)return new ArrayList<DayTotal>();
+            if(count==null||count<=0)return new ArrayList<>();
             list.forEach(x->x.getRating(count));
             return list;
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<DayTotal>();
+            return new ArrayList<>();
         }
     }
     @RequestMapping(value = "/table")
 
     public String Table(){
-
-        //return  "effectScatter-bmap";
         return  "statistics/tablemap";
     }
 }

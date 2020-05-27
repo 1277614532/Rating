@@ -71,9 +71,9 @@ public class TestController {
             InfoLogin infoLogin = infoLoginService.selectInfo(username);
             String str = "admin";
             if (str.equals(infoLogin.getRole())){       //防止空指针
-                return "redirect:/TestController/infoLogin";
-            }else {
                 return "redirect:/TestController/index";
+            }else {
+                return "redirect:/SmallController/indexx";
             }
 
         } catch (UnknownAccountException e) {

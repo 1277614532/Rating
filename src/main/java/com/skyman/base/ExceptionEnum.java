@@ -15,7 +15,7 @@ public enum ExceptionEnum {
 
     //用户信息
     USERNAME_REPEAT(5000100,"用户名已存在"),
-    PHONE_REPEAT(5000101,"手机号已存在"),
+     PHONE_REPEAT(5000101,"手机号已存在"),
     EMAIL_REPEAT(5000102,"邮箱已存在"),
 
     //卫视及节目信息

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class City {
     long num;
+    String info;
 
     public long getNum() {
         return num;
@@ -20,18 +21,14 @@ public class City {
     public String getInfo() {
         return info;
     }
-
     public void setInfo(String info) {
         this.info = info;
     }
-
-    String info;
 
     public City(String name, double value) {
         this.name = name;
         this.value = value;
     }
-
     public void setName(String name) {
         this.name = name;
     }

@@ -43,9 +43,9 @@
 		FROM
 			info_login t
 		WHERE 1=1
-		<if test="null != param and '' != param">
-			AND (t.USERNAME like CONCAT(CONCAT("%",#{param}),"%")
-			or t.PHONE like CONCAT(CONCAT("%",#{param}),"%")
+		<if test="null != param">
+			AND t.USERNAME LIKE CONCAT(CONCAT('%', #{param}), '%')
+			or t.PHONE LIKE CONCAT(CONCAT('%', #{param}), '%')
 		</if>
 	</select>
 

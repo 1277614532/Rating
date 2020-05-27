@@ -73,7 +73,13 @@
 				t.P_TIME = #{ptime},
 			</if>
 			<if test="pdesc != null">
-				t.P_DESC = #{pdesc}
+				t.P_DESC = #{pdesc},
+			</if>
+			<if test="pclicks != null">
+				t.P_CLICKS = #{pclicks},
+			</if>
+			<if test="prating != null">
+				t.P_RATING = #{prating}
 			</if>
 		WHERE
 			t.P_ID = #{pid}
@@ -81,7 +87,7 @@
 
 	<delete id="deleteByStation" parameterType="java.lang.String">
 		DELETE FROM info_program
-		WHERE P_STATION = #{string}
+		WHERE P_STATION LIKE CONCAT(CONCAT('%', #{sting}), '%')
 	</delete>
 
 </mapper>

@@ -24,20 +24,25 @@ public class UserController {
 
     @GetMapping(value = "selectAllUser")
     @ResponseBody
-    public ResultEntity loginInfo(){
-        List<InfoLogin> allUser = userService.selectAllUser();
-        return ResultUtil.success("OK",allUser);
-    }
-
-    @GetMapping(value = "fuzzySearch")
-    public ResultEntity fuzzySearch(@RequestParam String username){
-        if(username.equals("")){
-            return ResultUtil.error(ExceptionEnum.PARAMETER_MISSING.getCode(),ExceptionEnum.PARAMETER_MISSING.getMsg());
+    public ResultEntity loginInfo(@RequestParam(required = false,defaultValue = "") String content){
+        if(content.equals("")){
+            List<InfoLogin> allUser = userService.selectAllUser();
+            return ResultUtil.success("OK",allUser);
         }else {
-            List<InfoLogin> userByLike = userService.getUserByLike(username);
+            List<InfoLogin> userByLike = userService.getUserByLike(content);
             return ResultUtil.success("OK",userByLike);
         }
     }
+
+    /*@GetMapping(value = "fuzzySearch")
+    public ResultEntity fuzzySearch(@RequestParam(required = false,defaultValue = "") String content){
+        if(content.equals("")){
+            return ResultUtil.error(ExceptionEnum.PARAMETER_MISSING.getCode(),ExceptionEnum.PARAMETER_MISSING.getMsg());
+        }else {
+            List<InfoLogin> userByLike = userService.getUserByLike(content);
+            return ResultUtil.success("OK",userByLike);
+        }
+    }*/
 
     @GetMapping(value = "userAdd")
     public String userAdd(Model model){
